@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Simple Portfolio</title>
+      <link rel="stylesheet" href="style.css">
+      <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
+      <style>
+            /* Basic styling for modal */
+            .modal {
+                  display: none;
+                  position: fixed;
+                  z-index: 9999;
+                  left: 0;
+                  top: 0;
+                  width: 100%;
+                  height: 100%;
+                  overflow: auto;
+                  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+                  padding-top: 60px;
+                  opacity: 0;
+                  transition: opacity 0.3s ease-in-out; /* Smooth fade-in/fade-out */
+            }
+
+            .modal-content {
+                  background-color: #fefefe;
+                  margin: 5% auto;
+                  padding: 20px;
+                  border: 1px solid #888;
+                  width: 80%;
+                  max-width: 400px;
+                  animation: modalContentAnimation 0.5s ease-in-out;
+            }
+
+            /* Animation for modal content */
+            @keyframes modalContentAnimation {
+                  0% {
+                        opacity: 0;
+                        transform: scale(0.8);
+                  }
+                  100% {
+                        opacity: 1;
+                        transform: scale(1);
+                  }
+            }
+
+            /* Styling for the close button */
+            .close {
+                  color: #aaa;
+                  float: right;
+                  font-size: 28px;
+                  font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                  color: black;
+                  text-decoration: none;
+                  cursor: pointer;
+            }
+
+            /* Styling for Hire Modal Form */
+            input[type="text"], input[type="email"] {
+                  width: 100%;
+                  padding: 10px;
+                  margin: 10px 0;
+                  border: 1px solid #ccc;
+                  border-radius: 5px;
+            }
+
+            button[type="submit"] {
+                  background-color: #4CAF50;
+                  color: white;
+                  border: none;
+                  padding: 10px 20px;
+                  cursor: pointer;
+                  border-radius: 5px;
+            }
+
+            button[type="submit"]:hover {
+                  background-color: #45a049;
+            }
+
+      </style>
+</head>
+<body>
+      <header class="header">
+            <a href="#" class="logo"><span>Mar</span>tin</a>
+
+            <nav class="navbar">
+                  <a href="#" class="active">Portfolio</a>
+                  <a href="#">Services</a>
+                  <a href="#" id="experienceBtn">Experience</a>
+                  <a href="#">Project</a>
+                  <a href="#" id="contactBtn">Contact Me</a>
+            </nav>
+      </header>
+
+      <section class="home">
+            <div class="home-content">
+                  <h3>Hi</h3>
+
+                  <h1>I'm<span> Martin<br></span>Problem-solving & Debugging</h1>
+
+                  <p>Hi! I'm Martin Bantuto, a 20-year-old programmer from San Pablo City, Laguna. I have a passion for coding and problem-solving, specializing in .NET 9.0 development. I enjoy building efficient, scalable, and user-friendly applications.
+                        With a strong foundation in software development, I continuously strive to improve my skills and stay updated with the latest technologies.</p>
+
+                        <div class="btn-box">
+                              <button class="btn-1" id="hireMeBtn">Hire Me</button> <!-- "Hire Me" button to open modal -->
+                              <button class="btn-2">Experience</button>
+                        </div>
+            </div>
+
+            <div class="img-box">
+                  <img src="image.jpg" alt="Profile picture of Martin Bantuto">
+            </div>
+      </section>
+
+      <!-- Modal for Contact Information -->
+      <div id="contactModal" class="modal">
+            <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <h2>Contact Information</h2>
+                  <p>Email: <a href="mailto:martinbantuto092@gmail.com">martinbantuto092@gmail.com</a></p>
+                  <p>Phone: <a href="tel:+639XXXXXXXXX">+63 912 345 6789</a></p>
+            </div>
+      </div>
+
+      <!-- Modal for Experience -->
+      <div id="experienceModal" class="modal">
+            <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <h2>Experience</h2>
+                  <ul>
+                        <li><strong>Software Developer</strong> - XYZ Corp (2022 - Present)</li>
+                        <li><strong>Junior Developer</strong> - ABC Technologies (2021 - 2022)</li>
+                        <li><strong>Intern</strong> - DEF Solutions (2020 - 2021)</li>
+                  </ul>
+            </div>
+      </div>
+
+      <!-- Modal for Hire Me -->
+      <div id="hireModal" class="modal">
+            <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <h2>Contact Me</h2>
+                  <form id="contactForm">
+                        <input type="text" id="name" placeholder="Your Name" required>
+                        <input type="email" id="email" placeholder="Your Email" required>
+                        <button type="submit">Submit</button>
+                  </form>
+            </div>
+      </div>
+
+      <!-- JavaScript -->
+      <script>
+            // Modal-related variables
+            const contactBtn = document.getElementById("contactBtn");
+            const experienceBtn = document.getElementById("experienceBtn");
+            const hireMeBtn = document.getElementById("hireMeBtn");
+            const contactModal = document.getElementById("contactModal");
+            const experienceModal = document.getElementById("experienceModal");
+            const hireModal = document.getElementById("hireModal");
+            const closeBtns = document.querySelectorAll(".close");
+
+            // Open Contact Modal
+            contactBtn.onclick = function() {
+                  contactModal.style.display = "block";
+                  contactModal.style.opacity = "1"; 
+            }
+
+            // Open Experience Modal
+            experienceBtn.onclick = function() {
+                  experienceModal.style.display = "block";
+                  experienceModal.style.opacity = "1";
+            }
+
+            // Open Hire Me Modal
+            hireMeBtn.onclick = function() {
+                  hireModal.style.display = "block";
+                  hireModal.style.opacity = "1"; 
+            }
+
+            // Close modals when close button (×) is clicked
+            closeBtns.forEach(closeBtn => {
+                  closeBtn.onclick = function() {
+                        contactModal.style.display = "none";
+                        experienceModal.style.display = "none";
+                        hireModal.style.display = "none";
+                        contactModal.style.opacity = "0";
+                        experienceModal.style.opacity = "0"; 
+                        hireModal.style.opacity = "0"; 
+                  }
+            });
+
+            // Close modals if the user clicks outside the modal content
+            window.onclick = function(event) {
+                  if (event.target == contactModal || event.target == experienceModal || event.target == hireModal) {
+                        contactModal.style.display = "none";
+                        experienceModal.style.display = "none";
+                        hireModal.style.display = "none";
+                        contactModal.style.opacity = "0";
+                        experienceModal.style.opacity = "0"; 
+                        hireModal.style.opacity = "0"; 
+                  }
+            }
+
+            // Close modals if user presses ESC key
+            window.onkeydown = function(event) {
+                  if (event.key === "Escape") {
+                        contactModal.style.display = "none";
+                        experienceModal.style.display = "none";
+                        hireModal.style.display = "none";
+                        contactModal.style.opacity = "0";
+                        experienceModal.style.opacity = "0"; 
+                        hireModal.style.opacity = "0"; 
+                  }
+            }
+
+            // Handle the form submission
+            const form = document.getElementById("contactForm");
+            form.addEventListener("submit", function(e) {
+                  e.preventDefault(); // Prevent page reload
+                  const name = document.getElementById("name").value;
+                  const email = document.getElementById("email").value;
+                  console.log("Name:", name);
+                  console.log("Email:", email);
+                  hireModal.style.display = "none"; // Close the modal after submission
+                  alert("Thank you for contacting me, " + name + "!");
+            });
+      </script>
+</body>
+</html>
